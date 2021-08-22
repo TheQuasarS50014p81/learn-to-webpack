@@ -7,5 +7,10 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: outputPath
+  },
+  devServer: {
+    static: {
+      directory: outputPath
+    }
   }
 }
