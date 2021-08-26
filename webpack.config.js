@@ -67,5 +67,6 @@ module.exports = {
       }),
       new CssMinimizerPlugin(),
     ]
-  }
+  },
+  devtool: 'eval-source-map'
 }
