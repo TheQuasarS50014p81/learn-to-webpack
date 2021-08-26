@@ -1,10 +1,11 @@
-const path = require('path')
-const HtmlWebPackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
-const outputPath = path.resolve(__dirname, 'dist')
+const outputPath = path.resolve(__dirname, 'dist');
 
 module.exports = {
   entry: './src/index.js',
@@ -12,12 +13,12 @@ module.exports = {
     filename: 'main.js',
     path: outputPath
   },
-  module:{
+  module: {
     rules: [
       {
         test: /\.m?jsx?$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: 'babel-loader'
       },
       {
         test: /\.(sc|c)ss$/,
@@ -53,19 +54,19 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css'
-    })
+    }),
+    new ESLintPlugin()
   ],
   optimization: {
     minimizer: [
-      new UglifyJsPlugin(
-      {
+      new UglifyJsPlugin({
         uglifyOptions: {
           compress: {
             drop_console: true
           }
         }
       }),
-      new CssMinimizerPlugin(),
+      new CssMinimizerPlugin()
     ]
   },
   devtool: 'eval-source-map'
