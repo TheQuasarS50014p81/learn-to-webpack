@@ -77,8 +77,7 @@ typings/
 
 # Next.js build output
 .next
-dist/main.js
-dist/main.js.LICENSE.txt
+dist/
 
 # Nuxt.js build / generate output
 .nuxt
